@@ -18,7 +18,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>{children}</body>
+      <body className={`no-scrollbar ${inter.className} antialiased`}>
+        {children}
+
+        <div id="modal-root" />
+      </body>
     </html>
   );
 }
