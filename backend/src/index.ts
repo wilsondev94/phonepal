@@ -5,6 +5,8 @@ import { Server } from "socket.io";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 
+import authRoutes from "./routes/authRoute";
+
 dotenv.config();
 
 const app = express();
@@ -25,10 +27,10 @@ app.get("/", (req, res) => {
   res.send("This is home route");
 });
 
+app.use("/auth", authRoutes);
+
 mongoose
-  .connect(
-    process.env.MONGODB_URL || "mongodb://localhost:27017/order-chat-system"
-  )
+  .connect(process.env.MONGODB_URL!)
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
